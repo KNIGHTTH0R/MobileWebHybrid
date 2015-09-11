@@ -4,19 +4,20 @@
 // MAIN Server to process POST requests
 //
 
-
-Class Server {
+class Server
+{
 	// Define a server to handle ajax requests with sepcific actions.
-
 	private $debug = TRUE;
 
-	public function __construct() {
+	public function __construct()
+	{
 		// Constructor is also the incoming request handler
-
 		// Is this an AJAX request (params and json data?) if not, bye-bye.
-		if (!$this->is_ajax())	{
+		if (!$this->is_ajax())
+		{
 			return;
 		}
+		$this->handle_request();
 	}
 
 	public function handle_request() {
@@ -31,8 +32,14 @@ Class Server {
         	// the parameters each action expects. do some error checking.
         	//
             $action = $_POST["action"];
-            switch( $action ) {
-
+            switch( $action )
+						{
+								case "getUserPlaylists":
+										$this->getUserPlayLists();
+										break;
+								case "getSongsForPlaylist";
+									$this->getSongsForPlaylist();
+										break;
 								// next_song
 								// prev_song
 								// resume_song
@@ -54,7 +61,8 @@ Class Server {
 	private function is_ajax() {
 		// Function to check if the request is an AJAX request
 		//
-	    return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+	  //  return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+		return true;
 	}
 
 
@@ -70,8 +78,63 @@ Class Server {
 	    echo json_encode($response);
 	}
 
+	private function getUserPlayLists()
+	{
+		$response = -1;
 
-	private function do_test() {
+		if (isset($_POST["username"]))
+		{
+			$string = file_get_contents("../Server/user_dir.json");
+			$json = json_decode($string, true);
+
+			$response = $json[$_POST["username"]];
+
+/*Test Code
+			// Duplicate the posted parameters
+		$response = $_POST;
+
+		// Add the error code and message
+		$response['poop'] = -1;
+		$response['wohoo'] = "bla";
+		echo json_encode($response);*/
+		}
+		echo json_encode($response);
+	}
+
+	private function getSongsForPlaylist()
+	{
+		if (isset($_POST["username"]) && isset($_POST["playlist"]))
+		{
+			$request_user 		= $_POST["username"];
+			$request_playlist = $_POST["playlist"];
+
+			$users 		= json_decode(file_get_contents("../Server/user_dir.json"), true);
+			$songInfo = json_decode(file_get_contents("../Server/music_dir.json"), true);
+
+			$playlists = $users[$request_user]['playlists'];
+			$playlistSongIds = $playlists[$request_playlist]['songs'];
+
+			$response = [];
+
+			$count = count($playlistSongIds); // function call once
+			for($i = 0; $i < $count; $i++)
+			{
+				$songID = $playlistSongIds[$i];
+				$response[$i]['id']			= $songID;
+				$response[$i]['title'] 	= $songInfo['directory'][$songID]['title'];
+				$response[$i]['artist'] = $songInfo['directory'][$songID]['artist'];
+			}
+		}
+		else
+		{
+			$response = -1;
+		}
+
+		echo json_encode($response);
+	}
+
+	private function do_test()
+	{
 		// Here is the actual worker function, this is where you do your server sode processing and
 		// then generate a json data packet to return.
 		$request = $_POST;

@@ -7,14 +7,16 @@
 
         <!-- This is the key CDN to pull jQuery from -->
         <!-- To operate offline we may want these to load from a local source -->
-        <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
 
         <!-- Load local libraries here - Optimize later to concatenate and minify -->
         <script src='js/lib/vfs-lib.js'></script>
 
         <!-- Uncomment one of these, are we building an app or a game? -->
-		<!-- <script src='js/App.js'></script> -->
-		<!-- <script src='js/Game.js'></script> -->
+        <script src='js/App.js'></script>
+        <script src='js/Directory.js'></script>
+        <script src='js/model/model.js'></script>
+        <script src='js/View.js'></script>
 
         <!-- Local styles -->
         <style type='text/css'>
@@ -31,13 +33,14 @@
 
             <aside id='sidebar' class='main container'>
             	<div id='sidebar-data' class='content'>
-            		<h4>Sidebar Area</h4>
+            		<h4 onclick="loadUserPlaylists();">Sidebar Area</h4>
                 </div>
             </aside>
 
             <div id='wrapper' class='main container'>
                 <div id='app-area' class='content'>
                     <h3>My main app area here</h3>
+                    <ul id="user_playlists"></ul>
                 </div>
             </div>
 		</div>
