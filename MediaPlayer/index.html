@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>HTML5 App Demo</title>
-
+        <meta name = "viewport" content="width=device-witdth, user-scalable=NO">
         <link rel='stylesheet' href='css/style.css'>
 
         <!-- This is the key CDN to pull jQuery from -->
@@ -12,11 +12,13 @@
         <!-- Load local libraries here - Optimize later to concatenate and minify -->
         <script src='js/lib/vfs-lib.js'></script>
 
-        <!-- Uncomment one of these, are we building an app or a game? -->
-        <script src='js/App.js'></script>
-        <script src='js/Directory.js'></script>
+        <!-- Uncomment one of these, are we building an app or a game? -->      
+        <script src='js/directory.js'></script>
+        <script src='js/mediaPlayer.js'></script>
         <script src='js/model/model.js'></script>
-        <script src='js/View.js'></script>
+        <script src='js/view.js'></script>
+        <script src='js/lib/buzz.min.js'></script>
+        <script src='js/app.js'></script>
 
         <!-- Local styles -->
         <style type='text/css'>
@@ -43,6 +45,23 @@
                     <ul id="user_playlists"></ul>
                 </div>
             </div>
+
+
 		</div>
+    <footer>
+      <div id="media-player">
+        <ul id="media-player-controls">
+          <li>previous</li>
+          <li>play</li>
+          <li>next</li>
+        </ul>
+        <ul id="media-player-info">
+          <li>     //     </li>
+          <li id="media-player-song-title">SONG TITLE</li>
+          <li> - </li>
+          <li id="media-player-song-artist">SONG ARTIST</li>
+        </ul>
+      </div>
+    </footer>
     </body>
 </html>

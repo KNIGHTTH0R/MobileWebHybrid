@@ -1,0 +1,15 @@
+{
+    "username":
+    {
+       "info":
+       {
+         "name": "test",
+         "password": "test"
+       },
+
+       "playlists":
+       [
+         {"name": "p1","songs": [0,1]}, { "name": "p2", "songs": [1,0,1,0]}
+       ]
+    }
+}

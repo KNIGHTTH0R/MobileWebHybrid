@@ -65,6 +65,10 @@ class Server
 		return true;
 	}
 
+	private function getMedia()
+	{
+		$mediaFiles = glob("music/*.mp3");
+	}
 
 	private function is_error( $error_msg ) {
 

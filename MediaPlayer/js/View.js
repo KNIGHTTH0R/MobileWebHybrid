@@ -1,6 +1,9 @@
 var View = (function()
 {
-
+		function playButton()
+		{
+			app.mediaPlayer.play();
+		}
 		function init()
 		{
 				log("view init");
@@ -44,7 +47,7 @@ var View = (function()
 			li.textContent = song.title + "/ " + song.author;
 			li.onclick = function()
 			{
-				loadSong(song.id, song.title);
+				app.mediaPlayer.playClickedSong(song.id);
 			};
 			return li;
 		}

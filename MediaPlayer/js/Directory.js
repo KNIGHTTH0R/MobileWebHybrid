@@ -1,7 +1,7 @@
 "use strict";
 var directory_log_enabled = true;
 var default_username = "username";
-var serverPath = "../Server/server.php";
+var serverPath = "server.php";
 
 function log(data)
 {
@@ -84,14 +84,16 @@ function loadSongInfoForPlaylist(userID, playlistID)
         for(var i = 0; i < response_object.length; i++)
         {
             var songInfo = response_object[i];
-            var song = new Song(songInfo['id'],songInfo['title'], songInfo['artist']);
-            songs_in_playlist[i] = song;
+            if(songInfo)
+            {
+              log(songInfo['path']);
+              var song = new Song(songInfo['id'],songInfo['title'], songInfo['artist'], songInfo['path']);
+              songs_in_playlist[i] = song;
+            }
         }
+        log(songs_in_playlist);
         View.showSongList(songs_in_playlist);
+        var playlist = new Playlist(response_object['playlistID'], response_object['playlistName'], songs_in_playlist);
+        app.mediaPlayer.setPlaylist(playlist);
       });
-}
-
-function loadSong(songID, title)
-{
-  log(songID + ": " + title);
 }

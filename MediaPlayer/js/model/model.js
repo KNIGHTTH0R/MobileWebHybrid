@@ -24,9 +24,10 @@ Playlist.prototype =
     }
 }
 
-function Song(id, title, author)
+function Song(id, title, author, path)
 {
     this.id     = id;
     this.title  = title;
     this.author = author;
+    this.path   = path;
 }

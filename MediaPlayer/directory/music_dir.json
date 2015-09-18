@@ -1,0 +1,15 @@
+{
+    "directory":
+    [
+      {
+        "artist": "Alex Turner",
+        "title":  "Hiding Tonight",
+        "path":   "02 Hiding Tonight"
+      },
+
+      {
+        "artist": "Alex Turner",
+        "title":  "Glass in the Park",
+        "path":   "03 Glass In The Park"
+      }]
+}

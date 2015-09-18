@@ -13,59 +13,54 @@ var App = (function() {
 	function Class()
 	{
 			"use strict";
-	    var local =
+
+			var mediaPlayer = new MediaPlayer();
+
+	    var _private =
 			{
 	        // the local object contains all the private members used in this class
             done: false
 	    }
 
-      var api =
+      var _public =
 			{
 	        // the API object contains all the public members and methods we wish to expose
 	        // the Class function shuld return this.
             run: run,
-            init: init
+            init: init,
+						mediaPlayer: mediaPlayer
 	    };
-	    return api;
-
 
       function init()
 			{
-        	// Do some initialization of the member variables for the app
-
-        	// Create controllers to manage model objects and link them to DOM
-            // view elements
-
-            // Define the Event handlers for the app
+				View.init();
+				mediaPlayer = new MediaPlayer();
+				mediaPlayer.init();
     	}
-
 
     	function run()
 			{
-            // Run the app
-
-    		while (!done) {
-
+    		while (!_private.done)
+				{
     			updateData();
     			refreshView();
-
     		}
     	};
 
-
       function updateData()
 			{
-            // Update the app/simulation model
+          // Update the app/simulation model
         	// is the app finished running?
-        	done = true;
-        }
+        	_private.done = true;
+      }
 
+      function refreshView()
+			{
+          // Refresh the view - canvas and dom elements
 
-        function refreshView() {
-            // Refresh the view - canvas and dom elements
+      }
 
-        }
-
+			return _public;
     }
 
 	return Class;
@@ -77,10 +72,10 @@ var App = (function() {
 // MAIN
 // Define the set of private methods that you want to make public and return
 // them
-$(document).ready( function() {
-
-    //App.init();
-    //App.run();
-		View.init();
-
+var app;
+$(document).ready( function()
+{
+		app = new App();
+    app.init();
+    app.run();
 });
