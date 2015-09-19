@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HTML5 App Demo</title>
-        <meta name = "viewport" content="width=device-witdth, user-scalable=NO">
-        <link rel='stylesheet' href='css/style.css'>
+        <title>MediaPlayer</title>
+        <meta name = "viewport" content="width=device-width, user-scalable=NO">
+        <link rel='stylesheet' href='css/reset.css'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+        <link rel='stylesheet' href='css/stylesheet.css'>
 
         <!-- This is the key CDN to pull jQuery from -->
         <!-- To operate offline we may want these to load from a local source -->
@@ -11,24 +14,152 @@
 
         <!-- Load local libraries here - Optimize later to concatenate and minify -->
         <script src='js/lib/vfs-lib.js'></script>
+        <script src='js/lib/buzz.min.js'></script>
 
-        <!-- Uncomment one of these, are we building an app or a game? -->      
         <script src='js/directory.js'></script>
         <script src='js/mediaPlayer.js'></script>
         <script src='js/model/model.js'></script>
         <script src='js/view.js'></script>
-        <script src='js/lib/buzz.min.js'></script>
         <script src='js/app.js'></script>
-
-        <!-- Local styles -->
-        <style type='text/css'>
-        </style>
-
    </head>
 
-   <!-- The Structure of your app is here - Box model blocks of area -->
    <body>
-   		<div id='app-frame'>
+
+     <div id="app-frame">
+       <nav>
+         <div class="content">
+           <h2> // MEDIA PLAYER </h2>
+           <!-- dropdown of playlists? -->
+         </div>
+       </nav>
+
+
+       <div id="container-top" class="container">
+
+         <div id="container-top-content" class="content">
+
+           <div id="container-top-col-left" class="content-top">
+             <!--<div id="media-player-album-cover"></div>-->
+             <img id="media-player-album-cover-img" src="covers/Submarine.png" alt="album-cover">
+           </div>
+
+           <div id="container-top-col-right" class="content-top">
+             <div id="media-player-container">
+
+               <div id="media-player-info">
+                 <div id="media-player-song-title"> SONG NAME</div>
+                 <div> // </div>
+                 <div id="media-player-song-artist"> ARTIST NAME</div>
+               </div>
+
+               <div id="media-player">
+                 <ul id="media-player-controls">
+                  <!-- Material design icons -->
+                   <li id="previous" onclick="app.mediaPlayer.previous();"><i class="material-icons">&#xE045;</i></li>
+                   <li id="rewind"><i class="material-icons">&#xE020;</i></li>
+                   <li id="play"><i class="material-icons">&#xE037;</i></li>
+                   <!-- TODO: pause &#xE034; when music is playing-->
+                   <li id="forward"><i class="material-icons">&#xE01F;</i></li>
+                   <li id="next" onclick="app.mediaPlayer.next();"><i class="material-icons">&#xE044;</i></li>
+                 </ul>
+                 <div id="media-player-bar">
+                  <!--<div id="media-player-bar-line"></div>-->
+                    <input id="time-bar" type="range" min="0" max="100" step="1"/>
+
+                 </div>
+
+                 <div id="media-player-time">
+                   <p id="media-player-time-elapsed"> 00:00 </p>
+                   <p id="media-player-time-total"> 03:00 </p>
+                 </div>
+
+               </div>
+             </div>
+           </div>
+
+         </div>
+       </div>
+
+       <div id="container-bot" class="container">
+         <div id="container-bot-content" class="content">
+           <div id="container-bot-list" class="container">
+             <ul id="song-list" class="song-list">
+               <!--<li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+
+               <li class="current-song">
+                 <div class="song-row-index">2</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">4:00</div>
+               </li>
+
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>
+               <li>
+                 <div class="song-row-index">1</div>
+                 <div class="song-row-title">Song Name</div>
+                 <div class="song-row-artist">Artist Name</div>
+                 <div class="song-row-time">3:00</div>
+               </li>-->
+             </ul>
+           </div>
+         </div>
+       </div>
+
+     </div>
+     <!-- loadUserPlaylists(); -->
+<!--   		<div id='app-frame'>
             <nav id='title' class='header container'>
             	<h3 class='content'>Nav Menu Area</h3>
             </nav>
@@ -45,8 +176,6 @@
                     <ul id="user_playlists"></ul>
                 </div>
             </div>
-
-
 		</div>
     <footer>
       <div id="media-player">
@@ -62,6 +191,6 @@
           <li id="media-player-song-artist">SONG ARTIST</li>
         </ul>
       </div>
-    </footer>
+    </footer>-->
     </body>
 </html>

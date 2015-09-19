@@ -9,7 +9,7 @@
 
        "playlists":
        [
-         {"name": "p1","songs": [0,1]}, { "name": "p2", "songs": [1,0,1,0]}
+         {"name": "p1","songs": [0,1,2,3,4,5]}, { "name": "p2", "songs": [1,0,1,0]}
        ]
     }
 }

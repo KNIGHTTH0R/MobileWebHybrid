@@ -18,14 +18,12 @@ var View = (function()
 
   	}
 
-    function updateSongProgress(percentage)
+    function changeSongInfo(song)
     {
-
-    }
-
-    function changeSongInfo(title, artist)
-    {
-
+			$('.current-song').removeClass("current-song");
+			$('#'+song.id).addClass("current-song");
+			$('#media-player-song-title').html(song.title);
+			$('#media-player-song-artist').html(song.author);
     }
 
 		function createSongList(listOfSongs)
@@ -33,12 +31,12 @@ var View = (function()
 			var documentFragment = document.createDocumentFragment();
 			for(var i = 0; i < listOfSongs.length; i++)
 			{
-					documentFragment.appendChild(createSongRow(listOfSongs[i]));
+					documentFragment.appendChild(createRowForSong(i, listOfSongs[i]));
 			}
-			$('#user_playlists').html(documentFragment);
+			$('#song-list').html(documentFragment);
 		}
 
-		function createSongRow(song)
+		function createSongRow(index, song)
 		{
 			// Create a row for song
 			var li = document.createElement("li");
@@ -52,9 +50,46 @@ var View = (function()
 			return li;
 		}
 
+		function createRowForSong(count, song)
+		{
+			var li = document.createElement("li");
+			li.id = song.id;
+
+			var index = document.createElement("div");
+			index.className = "song-row-index";
+			index.textContent = count;
+			li.appendChild(index);
+
+			var title = document.createElement("div");
+			title.className = "song-row-title";
+			title.textContent = song.title;
+			li.appendChild(title);
+
+			var artist = document.createElement("div");
+			artist.className = "song-row-artist";
+			artist.textContent = song.author;
+			li.appendChild(artist);
+
+			var time = document.createElement("div");
+			time.className = "song-row-time";
+			time.textContent = "3:00";
+			li.appendChild(time);
+
+			// TODO: Set duration of song
+
+			li.onclick = function()
+			{
+				app.mediaPlayer.playClickedSong(song.id);
+				li.className = "current-song";
+			};
+
+			return li;
+		}
+
 		return {
 			init: init,
-			showSongList: createSongList
+			showSongList: createSongList,
+			changeSongInfo: changeSongInfo
 		}
 
 		}()); // Run the unnamed function and assign the results to app for use.

@@ -15,12 +15,12 @@ Playlist.prototype =
 {
     getSongAt: function( index )
     {
-        return songArray[index];
+        return this.songArray[index];
   	},
 
     numberOfSongs: function()
     {
-      return songArray.length;
+      return this.songArray.length;
     }
 }
 

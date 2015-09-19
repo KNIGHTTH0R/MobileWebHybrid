@@ -11,13 +11,14 @@ var MediaPlayer = (function ()
       init: init,
       play: play,
       next: next,
+      previous: previous,
       setPlaylist: setPlaylist,
       playClickedSong: playClickedSong
     };
 
     var _private =
     {
-      requestSong: requestSong
+
     };
 
     function init()
@@ -35,14 +36,27 @@ var MediaPlayer = (function ()
       currentSong.play;
     }
 
-    function playClickedSong(id)
+    function stop()
     {
       for(var i in buzz.sounds)
       {
-        buzz.sounds[i].pause();
+        buzz.sounds[i].stop();
       }
+    }
 
-      var songToPlay = new buzz.sound ( "media/"+currentPlaylist.songArray[id].path,
+    function playClickedSong(id)
+    {
+      playSong(currentPlaylist.getSongAt(id));
+    }
+
+    function playSong(song)
+    {
+      stop();
+
+      currentSong = song.id;
+      View.changeSongInfo(song);
+
+      var songToPlay = new buzz.sound ( "media/" + song.path,
       {
         formats: ["mp3"],
         preload:true,
@@ -50,31 +64,44 @@ var MediaPlayer = (function ()
         loop:false,
         volume: 10
       });
+
+      songToPlay.load().play().fadeIn(500);
+      songToPlay.bind("ended", next);
+      songToPlay.bind("timeupdate", bindSoundToTimeBar);
     }
 
-    function updateView()
+    function bindSoundToTimeBar()
     {
+      $("#media-player-time-total").html("/"+buzz.toTimer(this.getDuration()));
+      $("#media-player-time-elapsed").html(buzz.toTimer(this.getTime()));
+      $("#time-bar").attr({ max: this.getDuration() });
+      $("#time-bar").val(this.getTime());
+    }
 
+    function previous()
+    {
+      if(currentSong - 1 >= 0)
+      {
+        currentSong--;
+      }
+      else
+      {
+        currentSong = currentPlaylist.numberOfSongs() - 1;
+      }
+      playSong(currentPlaylist.getSongAt(currentSong));
     }
 
     function next()
     {
-      //currentSong.pause;
-      if(this.currentSong + 1 < currentSong.numOfSongs)
+      if(currentSong + 1 < currentPlaylist.numberOfSongs())
       {
-        this.currentSong++; // TODO: if at end of list, go to 0
+        currentSong++;
       }
       else
       {
-        this.currentSong = 0;
+        currentSong = 0;
       }
-      // currentSong.play;
-      // do stuff in UI
-    }
-
-    function requestSong(songID)
-    {
-        // Ask for this song from the server
+      playSong(currentPlaylist.getSongAt(currentSong));
     }
 
     return _public;

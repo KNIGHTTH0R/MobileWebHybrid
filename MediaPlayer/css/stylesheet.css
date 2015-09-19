@@ -1,4 +1,340 @@
-nav ul {
-  font-color: #09AE9E; }
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
 
-/*# sourceMappingURL=stylesheet.css.map */
+html,body
+{
+  background-color: #F2F4F8;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px; /* equals 1em in the rest of doc*/
+  color: #5A6A78;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1em;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+nav
+{
+  position: absolute;
+  z-index: 11;
+  width: 100%;
+  background-color: #09AE9E;
+  height:2.5em;
+  color: #F2F4F8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+h2
+{
+  font-size: 1.2em;
+  font-weight: 300;
+  font-style: italic;
+  text-shadow: 0.1em 0.1em 2px rgba(0,0,0,0.16);
+
+  text-align: left;
+  vertical-align: middle;
+  line-height: 2em;
+}
+
+#app-frame
+{
+  width: 100%;
+  height: 100%;
+}
+
+.hide
+{
+  display: none;
+  visibility: hidden;
+}
+
+.container
+{
+  /*padding: 1em;*/
+}
+
+.content
+{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 100%;
+}
+
+#container-top
+{
+  position: relative;
+  z-index: 10;
+  height: 40%;
+  background-color: #222C31;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  /* 1: box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
+}
+
+.content-top
+{
+  position: relative;
+  float: left;
+  padding-top: 2.5em;
+}
+
+#container-top-col-left
+{
+  width: 30%;
+  height: 80%;
+  /*border-right: thin solid #09AE9E;*/
+}
+
+#media-player-album-cover-img
+{
+  margin: 1em;
+  height: 80%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#container-top-col-right
+{
+  width: 70%;
+  height: 80%;
+}
+
+#media-player-container
+{
+  height: 100%;
+}
+
+#media-player-info
+{
+  height: 50%;
+  width: 100%;
+}
+
+#media-player-info div
+{
+  font-size: 1.5rem;
+  position: relative;
+  float: left;
+  padding: 1.5rem;
+  text-shadow: 0.1em 0.1em 2px rgba(0,0,0,0.16);
+}
+
+#media-player-song-title
+{
+  font-weight: 500;
+  color: #FFF;
+}
+
+#media-player
+{
+  margin-top: 2%;
+  height: 30%;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#media-player-controls, #media-player-bar, #media-player-time,
+#media-player-time-elapsed, #media-player-time-total, #time-slash,
+#media-player-bar-progress
+{
+  height: 100%;
+  position: relative;
+  float: left;
+}
+
+#media-player-bar
+{
+  width: 50%;
+  margin-left: 1em;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+input[type='range']
+{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  background: rgba(black,0.5);
+  height: 1px;
+  width:100%;
+  background-color: #09AE9E;
+}
+
+input[type='range']::-webkit-slider-thumb
+{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1em;
+  background: #09AE9E;
+  height: 2em;
+  width: 2em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+input[type=range]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+/*
+#media-player-bar-line
+{
+  background-color: #09AE9E;
+  width: 100%;
+  height: 1px;
+}*/
+
+#media-player-time
+{
+  background-color: #F2F4F8;
+  width: 15%;
+  float: right;
+}
+
+#media-player-time p
+{
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  text-align: right;
+  vertical-align: middle;
+  line-height: 4em;
+}
+
+#media-player-controls
+{
+  background-color: #5A6A78; /*212121*/
+  color: #FFF;
+  width: 30%;
+  padding: 0;
+}
+
+#media-player-controls li
+{
+  height: 100%;
+  display: inline-block;
+  width: 17%;
+}
+
+#media-player-controls i
+{
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5em;
+}
+
+
+#media-player-controls li:hover
+{
+  /*background-color: #09AE9E;*/
+  color:#09AE9E;
+}
+
+
+/*
+* BOTTOM SECTION
+* List of Songs
+*/
+
+#container-bot
+{
+  position: relative;
+  z-index: 1;
+  height: 56%;
+}
+
+#container-bot-content
+{
+  padding-top: 1em;
+  background-color: #FFFFFF;
+  overflow: scroll;
+}
+
+#song-list li
+{
+  height: 4em;
+  /* top, right, bottom, left*/
+  padding: 0 4em 0 4em;
+  border-bottom: thin solid #F2F4F8;
+  border-top: thin solid #F2F4F8;
+}
+
+#song-list li:hover
+{
+  background-color: #09AE9E;
+}
+
+.current-song
+{
+  background-color: #5A6A78;
+  color: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#song-list li div
+{
+  position: relative;
+  float: left;
+
+  text-shadow: 0.05em 0.05em 1px rgba(0,0,0,0.16);
+  text-align: left;
+  vertical-align: middle;
+  line-height: 4em;
+}
+
+.song-row-index
+{
+  width: 10%;
+}
+
+.song-row-title, .song-row-artist
+{
+  width: 40%;
+}
+
+.song-row-time
+{
+  width: 10%;
+}
+
+
+
+
+/*footer
+{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  z-index:  101;
+}
+
+footer ul
+{
+  background-color: white;
+  float: left;
+  width: 30%;
+}
+
+footer li
+{
+  display: inline-block;
+  padding: 1%;
+  background-color: white;
+}
+
+*/
+
+/*
+#media-player-album-cover
+{
+  margin: 1em;
+  background: url("../covers/Submarine.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  height: 80%;
+}
+*/
