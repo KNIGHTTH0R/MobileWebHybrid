@@ -29,6 +29,8 @@ var MediaPlayer = (function ()
     function setPlaylist(listOfSongs)
     {
       currentPlaylist = listOfSongs;
+      // TODO: uncomment this to autoplay on load
+      // playSong(currentPlaylist.getSongAt(0));
     }
 
     function play()

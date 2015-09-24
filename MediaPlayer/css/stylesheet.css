@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
 
+@media only screen and (min-width: 1300px)
+{
+  /* Large screen, non-retina */
+}
+
 html,body
 {
   background-color: #F2F4F8;
@@ -82,7 +87,7 @@ h2
 
 #container-top-col-left
 {
-  width: 30%;
+  width: 25%;
   height: 80%;
   /*border-right: thin solid #09AE9E;*/
 }
@@ -96,7 +101,7 @@ h2
 
 #container-top-col-right
 {
-  width: 70%;
+  width: 75%;
   height: 80%;
 }
 
@@ -109,6 +114,9 @@ h2
 {
   height: 50%;
   width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 #media-player-info div
@@ -129,7 +137,7 @@ h2
 #media-player
 {
   margin-top: 2%;
-  height: 30%;
+  height: 25%;
   background-color: white;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
@@ -197,9 +205,10 @@ input[type=range]:focus {
 {
   font-size: 0.8em;
   margin-left: 0.5em;
-  text-align: right;
-  vertical-align: middle;
-  line-height: 4em;
+  /* AMAZING CODE TO CENTER VERTICAL*/
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 #media-player-controls
@@ -208,6 +217,9 @@ input[type=range]:focus {
   color: #FFF;
   width: 30%;
   padding: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 #media-player-controls li
@@ -215,14 +227,17 @@ input[type=range]:focus {
   height: 100%;
   display: inline-block;
   width: 17%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 #media-player-controls i
 {
   font-size: 2em;
-  text-align: center;
+/* text-align: center;
   vertical-align: middle;
-  line-height: 1.5em;
+  line-height: 1.5em;*/
 }
 
 
@@ -298,43 +313,218 @@ input[type=range]:focus {
 {
   width: 10%;
 }
+ /*--------------------------*/
 
-
-
-
-/*footer
+@media only screen and (max-width: 700px)
 {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  background-color: white;
-  z-index:  101;
+
+  /* Small screen, non-retina */
+  html,body
+  {
+    font-size: 12px; /* equals 1em in the rest of doc*/
+    line-height: 1.5em;
+  }
+
+  .content
+  {
+    width: 100%;
+  }
+
+  #container-top
+  {
+    height: 20%;
+  }
+
+  #container-bot
+  {
+    height: 75%;
+  }
+
+ #container-top-col-right, #media-player-container
+  {
+    width: 100%;
+    height: 90%;
+  }
+
+  #media-player
+  {
+    background-color: #5A6A78;
+    height:50%;
+    bottom: 0;
+  }
+
+  #media-player-controls
+  {
+    height: 10%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  #media-player-bar
+  {
+      width: 75%;
+      background-color: inherit;
+  }
+  #media-player-time
+  {
+      width: 20%;
+      background-color: inherit;
+      color: white;
+  }
+
+  input[type='range'], input[type='range']::-webkit-slider-thumb
+  {
+    background-color: white;
+  }
+
+  #container-bot-content
+  {
+    padding-top: 0px;
+  }
+
+  .song-row-artist, #media-player-album-cover-img, #container-top-col-left
+  {
+    display: none;
+    visibility: hidden;
+  }
+  .song-row-title
+  {
+    width: 80%;
+  }
 }
 
-footer ul
-{
-  background-color: white;
-  float: left;
-  width: 30%;
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 320px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (                min-resolution: 192dpi) and (min-width: 320px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 320px) {
+
+  /* Small screen, retina, stuff to override above media query */
+
 }
 
-footer li
+@media only screen and (min-width:700px) and (max-width: 1200px)
 {
-  display: inline-block;
-  padding: 1%;
-  background-color: white;
+
+  /* Medium screen, non-retina */
+  body
+  {
+    line-height: 1.5em;
+  }
+  .content
+  {
+    width: 100%;
+  }
+
+  #container-top, #container-bot
+  {
+    position: relative;
+    float: left;
+    height: 100%;
+  }
+
+  #container-top
+  {
+    width: 30%;
+  }
+
+  .content-top
+  {
+    position:sticky;
+  }
+
+  #container-top-col-left
+  {
+    width: 100%;
+    height: 40%;
+    /*border-right: thin solid #09AE9E;*/
+  }
+
+  #media-player-album-cover-img
+  {
+    margin: 1em 1em 1em 1em;
+
+    height: auto;
+    max-height: 90%;
+    width: auto;
+    max-width: 90%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+  #container-top-col-right
+  {
+    padding-top: 1em;
+    width: 100%;
+    height: 60%;
+  }
+
+  #media-player-info
+  {
+    height: 100%;
+    display: block;
+  }
+
+  #media-player-song-slash
+  {
+    display: none;
+  }
+
+  #media-player-info div
+  {
+    position: static;
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  #media-player
+  {
+    height: 10%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #5A6A78;
+  }
+
+  #media-player-time
+  {
+    background-color: inherit;
+    color: white;
+  }
+
+  #media-player-controls
+  {
+    background-color: #09AE9E;
+  }
+
+  #container-bot
+  {
+    width: 70%;
+  }
+
+  .song-row-artist
+  {
+    display: none;
+    visibility: hidden;
+  }
+
+  .song-row-title
+  {
+    width: 80%;
+  }
+
 }
 
-*/
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 700px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 700px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 700px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 700px),
+only screen and (                min-resolution: 192dpi) and (min-width: 700px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 700px) {
 
-/*
-#media-player-album-cover
-{
-  margin: 1em;
-  background: url("../covers/Submarine.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  height: 80%;
+  /* Medium screen, retina, stuff to override above media query */
+
 }
-*/

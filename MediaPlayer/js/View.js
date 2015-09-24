@@ -57,7 +57,7 @@ var View = (function()
 
 			var index = document.createElement("div");
 			index.className = "song-row-index";
-			index.textContent = count;
+			index.textContent = count + 1;
 			li.appendChild(index);
 
 			var title = document.createElement("div");

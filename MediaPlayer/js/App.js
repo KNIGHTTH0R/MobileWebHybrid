@@ -15,7 +15,7 @@ var App = (function() {
 			"use strict";
 
 			var mediaPlayer = new MediaPlayer();
-
+			var currentUser;
 	    var _private =
 			{
 	        // the local object contains all the private members used in this class
