@@ -93,3 +93,60 @@ function loadSongInfoForPlaylist(userID, playlistID)
         app.mediaPlayer.setPlaylist(playlist);
       });
 }
+
+function test()
+{
+  $.post( "id3TagReader.php" )
+      .then(
+      function( response_string_json_format )
+      {
+        log(response_string_json_format);
+        //var response_object = $.parseJSON( response_string_json_format );
+        //log(response_object);
+      });
+}
+
+function uploadSong()
+{
+  var _submit = document.getElementById('_submit');
+  var file 			= document.getElementById('file');
+  var fileName 	= document.getElementById('file-name');
+
+  if(file.files.length === 0)
+  {
+  return;
+  }
+
+  var data = new FormData();
+  data.append('SelectedFile', file.files[0]);
+  data.append('fileName', fileName);
+
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function()
+  {
+      if(request.readyState == 4)
+      {
+        try {
+              var resp = JSON.parse(request.response);
+          } catch (e){
+              var resp = {
+                  status: 'error',
+                  data: 'Unknown error occurred: [' + request.responseText + ']'
+              };
+          }
+          console.log(resp.status + ': ' + resp.data);
+
+      }
+  };
+
+  /*request.upload.addEventListener('progress', function(e)
+  {
+  _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
+}, false);*/
+
+request.open('POST', 'upload.php');
+request.send(data);
+
+log("song upload");
+}

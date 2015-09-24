@@ -5,6 +5,15 @@
   /* Large screen, non-retina */
 }
 
+.file-upload
+{
+  background-color: white;
+  position: fixed;
+  top:0;
+  right: 0;
+  z-index: 100;
+}
+
 html,body
 {
   background-color: #F2F4F8;
