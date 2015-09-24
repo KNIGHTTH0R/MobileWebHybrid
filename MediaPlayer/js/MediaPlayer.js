@@ -4,14 +4,20 @@ var MediaPlayer = (function ()
   {
     "use strict";
     var currentSong = 0;
+    var songToPlay;
     var currentPlaylist;
+    var isPlaying = false;
+    var autoPlay = false; // TODO: set true to autoplay on load
+    var songStep = 10;
 
     var _public =
     {
       init: init,
-      play: play,
+      togglePlay: togglePlay,
       next: next,
       previous: previous,
+      backward: backward,
+      forward: forward,
       setPlaylist: setPlaylist,
       playClickedSong: playClickedSong
     };
@@ -29,21 +35,19 @@ var MediaPlayer = (function ()
     function setPlaylist(listOfSongs)
     {
       currentPlaylist = listOfSongs;
-      // TODO: uncomment this to autoplay on load
-      // playSong(currentPlaylist.getSongAt(0));
+
+      if(autoPlay)
+        playSong(currentPlaylist.getSongAt(0));
     }
 
-    function play()
+    function togglePlay()
     {
-      currentSong.play;
+      songToPlay.togglePlay();
     }
 
     function stop()
     {
-      for(var i in buzz.sounds)
-      {
-        buzz.sounds[i].stop();
-      }
+      buzz.all().stop();
     }
 
     function playClickedSong(id)
@@ -58,7 +62,7 @@ var MediaPlayer = (function ()
       currentSong = song.id;
       View.changeSongInfo(song);
 
-      var songToPlay = new buzz.sound ( "media/" + song.path,
+      songToPlay = new buzz.sound ( "media/" + song.path,
       {
         formats: ["mp3"],
         preload:true,
@@ -70,6 +74,21 @@ var MediaPlayer = (function ()
       songToPlay.load().play().fadeIn(500);
       songToPlay.bind("ended", next);
       songToPlay.bind("timeupdate", bindSoundToTimeBar);
+      songToPlay.bind("playing", songIsPlaying);
+      songToPlay.bind("pause", songIsPaused);
+    }
+
+    function songIsPlaying()
+    {
+      isPlaying = true;
+      $("#play i").html("&#xE034;");
+
+    }
+
+    function songIsPaused()
+    {
+      isPlaying = false;
+      $("#play i").html("&#xE037;");
     }
 
     function bindSoundToTimeBar()
@@ -104,6 +123,22 @@ var MediaPlayer = (function ()
         currentSong = 0;
       }
       playSong(currentPlaylist.getSongAt(currentSong));
+    }
+
+    function backward()
+    {
+      if(songToPlay.getTime() - songStep > 0)
+      {
+        songToPlay.setTime(songToPlay.getTime() - songStep);
+      }
+    }
+
+    function forward()
+    {
+      if(songToPlay.getTime() + songStep < songToPlay.getDuration())
+      {
+        songToPlay.setTime(songToPlay.getTime() + songStep);
+      }
     }
 
     return _public;

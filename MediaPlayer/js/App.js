@@ -1,13 +1,3 @@
-/*
- * App Singleton MAIN
- *
- * @copyright: (C) 2014 Kibble Games Inc in cooperation with Vancouver Film School. All Rights Reserved.
- * @author: Scott Henshaw {@link mailto:shenshaw@vfs.com}
- * @version: 1.1.0
- *
- * @summary: Framework Singleton Class to contain a web app
- *
- */
 var App = (function() {
 
 	function Class()

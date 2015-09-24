@@ -1,4 +1,3 @@
-"use strict";
 var directory_log_enabled = true;
 var default_username = "username";
 var serverPath = "server.php";
@@ -58,10 +57,7 @@ function createPlaylistRow(order,playlistName, numOfSongs)
   return li;
 }
 
-function addUserPlaylist(userID, playlistObj)
-{
-
-}
+function addUserPlaylist(userID, playlistObj){}
 
 function loadSongInfoForPlaylist(userID, playlistID)
 {

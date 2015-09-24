@@ -8,11 +8,8 @@
       rel="stylesheet">
         <link rel='stylesheet' href='css/stylesheet.css'>
 
-        <!-- This is the key CDN to pull jQuery from -->
-        <!-- To operate offline we may want these to load from a local source -->
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
 
-        <!-- Load local libraries here - Optimize later to concatenate and minify -->
         <script src='js/lib/vfs-lib.js'></script>
         <script src='js/lib/buzz.min.js'></script>
 
@@ -56,10 +53,10 @@
                  <ul id="media-player-controls">
                   <!-- Material design icons -->
                    <li id="previous" onclick="app.mediaPlayer.previous();"><i class="material-icons">&#xE045;</i></li>
-                   <li id="rewind"><i class="material-icons">&#xE020;</i></li>
-                   <li id="play"><i class="material-icons">&#xE037;</i></li>
+                   <li id="rewind" onclick="app.mediaPlayer.backward();"><i class="material-icons">&#xE020;</i></li>
+                   <li id="play" onclick="app.mediaPlayer.togglePlay();"><i class="material-icons">&#xE037;</i></li>
                    <!-- TODO: pause &#xE034; when music is playing-->
-                   <li id="forward"><i class="material-icons">&#xE01F;</i></li>
+                   <li id="forward" onclick="app.mediaPlayer.forward();"><i class="material-icons">&#xE01F;</i></li>
                    <li id="next" onclick="app.mediaPlayer.next();"><i class="material-icons">&#xE044;</i></li>
                  </ul>
                  <div id="media-player-bar">
@@ -156,41 +153,6 @@
            </div>
          </div>
        </div>
-
      </div>
-     <!-- loadUserPlaylists(); -->
-<!--   		<div id='app-frame'>
-            <nav id='title' class='header container'>
-            	<h3 class='content'>Nav Menu Area</h3>
-            </nav>
-
-            <aside id='sidebar' class='main container'>
-            	<div id='sidebar-data' class='content'>
-            		<h4 onclick="loadUserPlaylists();">Sidebar Area</h4>
-                </div>
-            </aside>
-
-            <div id='wrapper' class='main container'>
-                <div id='app-area' class='content'>
-                    <h3>My main app area here</h3>
-                    <ul id="user_playlists"></ul>
-                </div>
-            </div>
-		</div>
-    <footer>
-      <div id="media-player">
-        <ul id="media-player-controls">
-          <li>previous</li>
-          <li>play</li>
-          <li>next</li>
-        </ul>
-        <ul id="media-player-info">
-          <li>     //     </li>
-          <li id="media-player-song-title">SONG TITLE</li>
-          <li> - </li>
-          <li id="media-player-song-artist">SONG ARTIST</li>
-        </ul>
-      </div>
-    </footer>-->
     </body>
 </html>
