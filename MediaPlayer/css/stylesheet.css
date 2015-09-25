@@ -501,6 +501,13 @@ input[type=range]:focus {
     padding-top: 0px;
   }
 
+  #song-list li
+  {
+    width: 90%;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
   .song-row-artist, #media-player-album-cover-img, #container-top-col-left
   {
     display: none;
@@ -510,6 +517,7 @@ input[type=range]:focus {
   {
     width: 80%;
   }
+
 }
 
 @media
