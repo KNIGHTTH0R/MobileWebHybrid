@@ -473,6 +473,17 @@ input[type=range]:focus {
     bottom: 0;
   }
 
+  #media-player-song-title, #media-player-song-artist
+  {
+    width: 50%;
+    padding: 0 1em 0 1em;
+  }
+
+  #media-player-song-slash
+  {
+    display: none;
+  }
+
   #media-player-controls
   {
     height: 10%;
