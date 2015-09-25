@@ -1,11 +1,7 @@
 <?php
-// ========================================================================
-//
-// MAIN Server to process POST requests
-//
+
 class Server
 {
-	// Define a server to handle ajax requests with sepcific actions.
 	private $debug = TRUE;
 
 	public function __construct()
@@ -14,17 +10,11 @@ class Server
 		$this->handle_request();
 	}
 
-	public function handle_request() {
-		// Look for part of the AJAX params to be an attribute called "action"
-		// If it exists, and its set to something other than "" we can do
-		// something with this request
-		//
-        if (isset($_POST["action"]) && !empty($_POST["action"])) {
+	public function handle_request()
+	{
+        if (isset($_POST["action"]) && !empty($_POST["action"]))
+				{
 
-        	// Get the action requested, save it in an easy to access variable
-        	// Your API is defined here, the 'actions' this server responds to and
-        	// the parameters each action expects. do some error checking.
-        	//
             $action = $_POST["action"];
             switch( $action )
 						{
@@ -52,12 +42,9 @@ class Server
 		$mediaFiles = glob("media/*.mp3");
 	}
 
-	private function is_error( $error_msg ) {
-
-        // Duplicate the posted parameters
+	private function is_error( $error_msg )
+	{
 	    $response = $_POST;
-
-	    // Add the error code and message
 	    $response['returnCode'] = -1;
 	    $response['errorMsg'] = $error_msg;
 
@@ -134,7 +121,7 @@ class Server
 
 	private function uploadFile()
 	{
-
+		//move upload requests to this server.php
 	}
 
 }

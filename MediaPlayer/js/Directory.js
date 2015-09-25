@@ -139,8 +139,8 @@ function uploadSong()
 {
   var _submit   = document.getElementById('_submit');
   var file 			= document.getElementById('file');
-  var fileName 	= document.getElementById('file-title').value;
-  var fileAuthor= document.getElementById('file-artist').value;
+  //var fileName 	= document.getElementById('file-title').value;
+  //var fileAuthor= document.getElementById('file-artist').value;
 
   if(file.files.length === 0)
   {
@@ -151,8 +151,8 @@ function uploadSong()
 
   data.append('SelectedFile', file.files[0]);
   //data.append('action', 'uploadFile');
-  data.append('title', fileName);
-  data.append('artist', fileAuthor);
+  //data.append('title', fileName);
+  //data.append('artist', fileAuthor);
 
   var request = new XMLHttpRequest();
 

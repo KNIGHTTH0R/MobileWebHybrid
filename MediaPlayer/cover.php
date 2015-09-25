@@ -71,14 +71,14 @@ function createAndGetImageFromFile($songPath)
   if(isset($id3->talb))
   {
     //$title = $id3->tit2->text;
+    //$author = $id3->tpe1->text;
     $album = $id3->talb->text;
     $path = "media/covers/" . $album;
   }
 
   if(isset ($id3->tlen))
   {
-    $time = $id3->tlen->text;
-    echo $time;
+    echo $id3->tlen->text;
   }
 
   if (isset($id3->apic))
@@ -105,6 +105,60 @@ function createAndGetImageFromFile($songPath)
 function endsWith($string, $substring) {
     // search forward starting from end minus needle length characters
     return $substring === "" || (($temp = strlen($string) - strlen($substring)) >= 0 && strpos($string, $substring, $temp) !== FALSE);
+}
+
+function getTitle($songPath)
+{
+    if(endsWith($songPath, ".mp3") === FALSE)
+      $file = "media/" . $songPath . ".mp3";
+    else
+      $file = "media/" . $songPath;
+
+    try
+    {
+      $id3 = new Zend_Media_Id3v2($file);
+    }
+    catch (Zend_Media_Id3_Exception $e)
+    {
+      __debugEcho($e->getMessage());
+      continue;
+    }
+
+    $title = "";
+
+    if(isset($id3->tit2))
+    {
+      $title = $id3->tit2->text;
+    }
+
+    return $title;
+}
+
+function getAuthor($songPath)
+{
+    if(endsWith($songPath, ".mp3") === FALSE)
+      $file = "media/" . $songPath . ".mp3";
+    else
+      $file = "media/" . $songPath;
+
+    try
+    {
+      $id3 = new Zend_Media_Id3v2($file);
+    }
+    catch (Zend_Media_Id3_Exception $e)
+    {
+      __debugEcho($e->getMessage());
+      continue;
+    }
+
+    $author = "";
+
+    if(isset($id3->tpe1))
+    {
+      $author = $id3->tpe1->text;
+    }
+
+    return $author;
 }
 
 

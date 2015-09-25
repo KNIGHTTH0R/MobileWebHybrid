@@ -23,17 +23,18 @@
 
      <div id="app-frame">
        <nav>
-         <div class="content">
+         <div class="logo">
            <h2 onclick="test();"> // MEDIA PLAYER </h2>
            <!-- dropdown of playlists? -->
          </div>
 
          <div class="file-upload">
            <form >
-            <div id ="file-choose-button" onclick="$('#file').click();">CHOOSE FILE</div>
+            <div id ="file-choose-button" onclick="$('#file').click();">UPLOAD FILE</div>
             <input id="file" type="file" name="file">
-            <label>Name: <input id="file-title" type="text" name="file-title"></label>
-            <label>Artist: <input id="file-artist" type="text" name="file-artist"></label>
+            <!--<input id="file-title" class ="custom-input" type="text" name="file-title" placeholder="Song Title">
+            <label>Name: </label>
+            <label>Artist: </label><input id="file-artist" type="text" name="file-artist">-->
             <div id="submit" onclick="uploadSong();"><i class="material-icons">&#xE2C6;</i></div>
           </form>
          </div>
@@ -92,7 +93,8 @@
          <div id="container-bot-content" class="content">
            <div id="container-bot-list" class="container">
              <ul id="song-list" class="song-list">
-               <!--<li>
+               <!-- TEST LIST OF SONGS
+               <li>
                  <div class="song-row-index">1</div>
                  <div class="song-row-title">Song Name</div>
                  <div class="song-row-artist">Artist Name</div>

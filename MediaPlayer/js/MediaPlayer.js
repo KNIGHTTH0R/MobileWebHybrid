@@ -23,11 +23,6 @@ var MediaPlayer = (function ()
       playClickedSong: playClickedSong
     };
 
-    var _private =
-    {
-
-    };
-
     function init()
 		{
 				log("mediaplayer init");

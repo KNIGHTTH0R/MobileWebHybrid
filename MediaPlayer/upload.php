@@ -43,12 +43,16 @@ function outputJSON($msg, $status = 'error')
   $json_dir = json_decode(file_get_contents($file), true);
   $dirArray = $json_dir['directory'];
 
-  $count = count($dirArray); // index of new song
-  $dirArray[$count]['artist'] = $_POST['artist'];
-  $dirArray[$count]['title'] = $_POST['title'];
-
   $fullPath = $_FILES['SelectedFile']['name'];
   $noExtension = substr($_FILES['SelectedFile']['name'], 0, -4);
+
+  $count = count($dirArray); // index of new song
+  //$dirArray[$count]['artist'] = $_POST['artist'];
+  //$dirArray[$count]['title'] = $_POST['title'];
+
+  $dirArray[$count]['artist'] = getAuthor($noExtension);
+  $dirArray[$count]['title'] = getTitle($noExtension);
+
   $dirArray[$count]['path'] = $noExtension;
   $dirArray[$count]['cover'] = createAndGetImageFromFile($noExtension);
 
