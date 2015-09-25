@@ -74,7 +74,6 @@ function loadSongInfoForPlaylist(userID, playlistID)
       function( response_string_json_format )
       {
         var response_object = $.parseJSON( response_string_json_format );
-        log(response_object);
 
         var songs_in_playlist = [];
         for(var i = 0; i < response_object.length; i++)
@@ -82,21 +81,51 @@ function loadSongInfoForPlaylist(userID, playlistID)
             var songInfo = response_object[i];
             if(songInfo)
             {
-              log(songInfo['path']);
-              var song = new Song(songInfo['id'],songInfo['title'], songInfo['artist'], songInfo['path']);
+              var song = new Song(songInfo['id'],songInfo['title'], songInfo['artist'], songInfo['path'], songInfo['cover']);
               songs_in_playlist[i] = song;
             }
         }
-        log(songs_in_playlist);
         View.showSongList(songs_in_playlist);
         var playlist = new Playlist(response_object['playlistID'], response_object['playlistName'], songs_in_playlist);
         app.mediaPlayer.setPlaylist(playlist);
       });
 }
 
+function loadAllSongInfo()
+{
+  var request_object =
+  {
+      'action': 'getAllSongs'
+  };
+
+  var request_param_string = $.param( request_object );
+
+  $.post( serverPath, request_param_string )
+      .then(
+      function( response_string_json_format )
+      {
+        var response_object = $.parseJSON( response_string_json_format );
+
+        var songs_in_playlist = [];
+        for(var i = 0; i < response_object.length; i++)
+        {
+            var songInfo = response_object[i];
+            if(songInfo)
+            {
+              var song = new Song(songInfo['id'],songInfo['title'], songInfo['artist'], songInfo['path'], songInfo['cover']);
+              songs_in_playlist[i] = song;
+            }
+        }
+        View.showSongList(songs_in_playlist);
+        var playlist = new Playlist(response_object['playlistID'], response_object['playlistName'], songs_in_playlist);
+        app.mediaPlayer.setPlaylist(playlist);
+      });
+}
+
+/*
 function test()
 {
-  $.post( "id3TagReader.php" )
+  $.post( "cover.php" )
       .then(
       function( response_string_json_format )
       {
@@ -104,13 +133,14 @@ function test()
         //var response_object = $.parseJSON( response_string_json_format );
         //log(response_object);
       });
-}
+}*/
 
 function uploadSong()
 {
-  var _submit = document.getElementById('_submit');
+  var _submit   = document.getElementById('_submit');
   var file 			= document.getElementById('file');
-  var fileName 	= document.getElementById('file-name');
+  var fileName 	= document.getElementById('file-title').value;
+  var fileAuthor= document.getElementById('file-artist').value;
 
   if(file.files.length === 0)
   {
@@ -118,27 +148,31 @@ function uploadSong()
   }
 
   var data = new FormData();
+
   data.append('SelectedFile', file.files[0]);
-  data.append('fileName', fileName);
+  //data.append('action', 'uploadFile');
+  data.append('title', fileName);
+  data.append('artist', fileAuthor);
 
   var request = new XMLHttpRequest();
 
   request.onreadystatechange = function()
-  {
-      if(request.readyState == 4)
-      {
-        try {
-              var resp = JSON.parse(request.response);
-          } catch (e){
-              var resp = {
-                  status: 'error',
-                  data: 'Unknown error occurred: [' + request.responseText + ']'
-              };
-          }
-          console.log(resp.status + ': ' + resp.data);
+    {
+        if (request.readyState == 4 && request.status == 200)
+        {
+            log("RESPONSE: " + request.responseText);
+            if(request.responseText != null)
+            {
+              var response_object = $.parseJSON( request.responseText );
+              var song = new Song(response_object['id'],response_object['title'], response_object['artist'], response_object['path'], response_object['cover']);
 
-      }
-  };
+              log(song);
+
+              View.appendRow(song);
+              app.mediaPlayer.getPlaylist().addSong(song);
+            }
+        }
+    };
 
   /*request.upload.addEventListener('progress', function(e)
   {
@@ -147,6 +181,4 @@ function uploadSong()
 
 request.open('POST', 'upload.php');
 request.send(data);
-
-log("song upload");
 }

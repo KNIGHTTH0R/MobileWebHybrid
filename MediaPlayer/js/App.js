@@ -69,5 +69,6 @@ $(document).ready( function()
     app.init();
     app.run();
 		//loadUserPlaylists();
-		loadSongInfoForPlaylist(default_username, 0);
+		//loadSongInfoForPlaylist(default_username, 0);
+		loadAllSongInfo();
 });

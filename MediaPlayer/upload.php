@@ -1,12 +1,16 @@
 <?php
+
+include 'cover.php';
+$path = "media/";
+
 // Output JSON
 function outputJSON($msg, $status = 'error')
 {
-    header('Content-Type: application/json');
-    echo(json_encode(array(
+    /*header('Content-Type: application/json');
+    /*echo(json_encode(array(
         'data' => $msg,
         'status' => $status
-    )));
+    )));*/
 }
 
   // Check for errors
@@ -21,21 +25,42 @@ function outputJSON($msg, $status = 'error')
   }
 
   // Check filesize
-  if($_FILES['SelectedFile']['size'] > 500000){
+  if($_FILES['SelectedFile']['size'] > 500000000){
       outputJSON('File uploaded exceeds maximum upload size.');
   }
 
   // Check if the file exists
-  if(file_exists('upload/' . $_FILES['SelectedFile']['name'])){
+  if(file_exists($path . $_FILES['SelectedFile']['name'])){
       outputJSON('File with that name already exists.');
   }
 
   // Upload file
-  if(!move_uploaded_file($_FILES['SelectedFile']['tmp_name'], 'upload/' . $_FILES['SelectedFile']['name'])){
+  if(!move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $path . $_FILES['SelectedFile']['name'])){
       outputJSON('Error uploading file - check destination is writeable.');
   }
 
+  $file = "directory/music_dir.json";
+  $json_dir = json_decode(file_get_contents($file), true);
+  $dirArray = $json_dir['directory'];
+
+  $count = count($dirArray); // index of new song
+  $dirArray[$count]['artist'] = $_POST['artist'];
+  $dirArray[$count]['title'] = $_POST['title'];
+
+  $fullPath = $_FILES['SelectedFile']['name'];
+  $noExtension = substr($_FILES['SelectedFile']['name'], 0, -4);
+  $dirArray[$count]['path'] = $noExtension;
+  $dirArray[$count]['cover'] = createAndGetImageFromFile($noExtension);
+
+  $newJson = [];
+  $newJson['directory'] = $dirArray;
+
+  $newFile = file_put_contents($file, json_encode($newJson,TRUE));
+
+  $dirArray[$count]['id'] = $count;
+  echo json_encode($dirArray[$count],TRUE);
+
   // Success!
-  outputJSON('File uploaded successfully to "' . 'upload/' . $_FILES['SelectedFile']['name'] . '".', 'success');
+  outputJSON('File uploaded successfully to "' . $path . $_FILES['SelectedFile']['name'] . '".', 'success');
 
 ?>

@@ -51,6 +51,27 @@ h2
   line-height: 2em;
 }
 
+#file
+{
+  display: none;
+}
+
+#file-choose-button
+{
+  background-color: #F2F4F8;
+}
+
+input[type=file]
+{
+  background-color: black;
+}
+
+#submit
+{
+  background-color: white;
+  color: #09AE9E;
+}
+
 #app-frame
 {
   width: 100%;
@@ -506,6 +527,12 @@ only screen and (                min-resolution: 2dppx)  and (min-width: 320px) 
   #media-player-controls
   {
     background-color: #09AE9E;
+  }
+
+  #media-player-controls li:hover
+  {
+    /*background-color: #09AE9E;*/
+    color:#222C31;
   }
 
   #container-bot

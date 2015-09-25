@@ -21,13 +21,19 @@ Playlist.prototype =
     numberOfSongs: function()
     {
       return this.songArray.length;
+    },
+
+    addSong: function(song)
+    {
+      this.songArray.push(song);
     }
 }
 
-function Song(id, title, author, path)
+function Song(id, title, author, path, coverPath)
 {
     this.id     = id;
     this.title  = title;
     this.author = author;
     this.path   = path;
+    this.cover  = coverPath;
 }

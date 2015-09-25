@@ -1,5 +1,8 @@
 var View = (function()
 {
+		var coversPath =  "media/covers/";
+		var imagesPath =  "images/";
+
 		function playButton()
 		{
 			app.mediaPlayer.play();
@@ -24,7 +27,18 @@ var View = (function()
 			$('#'+song.id).addClass("current-song");
 			$('#media-player-song-title').html(song.title);
 			$('#media-player-song-artist').html(song.author);
+			if(imageExists(coversPath + song.cover + ".jpeg"))
+				$('#media-player-album-cover-img').attr("src", coversPath + song.cover + ".jpeg");
+			else
+				$('#media-player-album-cover-img').attr("src", imagesPath + "cover.png");
     }
+
+		function imageExists(url)
+		{
+		   var img = new Image();
+		   img.src = url;
+		   return img.height != 0;
+		}
 
 		function createSongList(listOfSongs)
 		{
@@ -48,6 +62,13 @@ var View = (function()
 				app.mediaPlayer.playClickedSong(song.id);
 			};
 			return li;
+		}
+
+		function appendRow(song)
+		{
+			var documentFragment = document.createDocumentFragment();
+			documentFragment.appendChild(createRowForSong(song.id, song));
+			$('#song-list').append(documentFragment);
 		}
 
 		function createRowForSong(count, song)
@@ -89,7 +110,8 @@ var View = (function()
 		return {
 			init: init,
 			showSongList: createSongList,
-			changeSongInfo: changeSongInfo
+			changeSongInfo: changeSongInfo,
+			appendRow: appendRow
 		}
 
 		}()); // Run the unnamed function and assign the results to app for use.

@@ -19,6 +19,7 @@ var MediaPlayer = (function ()
       backward: backward,
       forward: forward,
       setPlaylist: setPlaylist,
+      getPlaylist: getPlaylist,
       playClickedSong: playClickedSong
     };
 
@@ -31,6 +32,11 @@ var MediaPlayer = (function ()
 		{
 				log("mediaplayer init");
 		}
+
+    function getPlaylist()
+    {
+      return currentPlaylist;
+    }
 
     function setPlaylist(listOfSongs)
     {

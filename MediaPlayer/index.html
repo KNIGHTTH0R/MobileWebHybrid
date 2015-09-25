@@ -4,8 +4,7 @@
         <title>MediaPlayer</title>
         <meta name = "viewport" content="width=device-width, user-scalable=NO">
         <link rel='stylesheet' href='css/reset.css'>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel='stylesheet' href='css/stylesheet.css'>
 
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
@@ -25,19 +24,22 @@
      <div id="app-frame">
        <nav>
          <div class="content">
-           <h2> // MEDIA PLAYER </h2>
+           <h2 onclick="test();"> // MEDIA PLAYER </h2>
            <!-- dropdown of playlists? -->
+         </div>
+
+         <div class="file-upload">
+           <form >
+            <div id ="file-choose-button" onclick="$('#file').click();">CHOOSE FILE</div>
+            <input id="file" type="file" name="file">
+            <label>Name: <input id="file-title" type="text" name="file-title"></label>
+            <label>Artist: <input id="file-artist" type="text" name="file-artist"></label>
+            <div id="submit" onclick="uploadSong();"><i class="material-icons">&#xE2C6;</i></div>
+          </form>
          </div>
        </nav>
 
-       <div class="file-upload">
-         <form >
-          <div class="custom-file-input">Attach File</div>
-          <label>File:</label><input id="file" type="file" name="file">
-          <label>Name: <input id="file-name" type="text" name="fileName"></label>
-          <input value='upload' id="submit" onclick="uploadSong();">
-        </form>
-       </div>
+
 
 
        <div id="container-top" class="container">
@@ -46,7 +48,7 @@
 
            <div id="container-top-col-left" class="content-top">
              <!--<div id="media-player-album-cover"></div>-->
-             <img id="media-player-album-cover-img" src="covers/Submarine.png" alt="album-cover">
+             <img id="media-player-album-cover-img" src="images/Submarine.png" alt="album-cover">
            </div>
 
            <div id="container-top-col-right" class="content-top">

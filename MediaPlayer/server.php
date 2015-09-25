@@ -34,6 +34,12 @@ class Server
 								case "getSongsForPlaylist";
 									$this->getSongsForPlaylist();
 										break;
+								case "getAllSongs":
+									$this->getAllSongs();
+									break;
+								case "uploadFile":
+									$this->uploadFile();
+									break;
                 default:
                     $this->is_error( "Error 101: Invalid Command.");
                     break;
@@ -97,6 +103,7 @@ class Server
 				$response[$i]['title'] 	= $songInfo['directory'][$songID]['title'];
 				$response[$i]['artist'] = $songInfo['directory'][$songID]['artist'];
 				$response[$i]['path'] 	= $songInfo['directory'][$songID]['path'];
+				$response[$i]['cover'] 	= $songInfo['directory'][$songID]['cover'];
 			}
 		}
 		else
@@ -106,6 +113,30 @@ class Server
 
 		echo json_encode($response);
 	}
+
+	private function getAllSongs()
+	{
+		$songDir = json_decode(file_get_contents("directory/music_dir.json"), true);
+		$songInfo = $songDir['directory'];
+		$response = [];
+		$count = count($songInfo); // function call once
+
+		for($i = 0; $i < $count; $i++)
+		{
+			$response[$i]['id']			= $i;
+			$response[$i]['title'] 	= $songInfo[$i]['title'];
+			$response[$i]['artist'] = $songInfo[$i]['artist'];
+			$response[$i]['path'] 	= $songInfo[$i]['path'];
+			$response[$i]['cover'] 	= $songInfo[$i]['cover'];
+		}
+		echo json_encode($response);
+	}
+
+	private function uploadFile()
+	{
+
+	}
+
 }
 $server = new Server();
 ?>
