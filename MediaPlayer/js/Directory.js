@@ -8,7 +8,40 @@ function log(data)
     console.log(data);
 }
 
-// This class will ask server for the information, and load the files required
+/* This file includes helper functions for the AJAX communication */
+// Loads info for all songs in directory
+function loadAllSongInfo()
+{
+  var request_object =
+  {
+      'action': 'getAllSongs'
+  };
+
+  var request_param_string = $.param( request_object );
+
+  $.post( serverPath, request_param_string )
+      .then(
+      function( response_string_json_format )
+      {
+        var response_object = $.parseJSON( response_string_json_format );
+
+        var songs_in_playlist = [];
+        for(var i = 0; i < response_object.length; i++)
+        {
+            var songInfo = response_object[i];
+            if(songInfo)
+            {
+              var song = new Song(songInfo['id'],songInfo['title'], songInfo['artist'], songInfo['path'], songInfo['cover']);
+              songs_in_playlist[i] = song;
+            }
+        }
+        View.showSongList(songs_in_playlist);
+        var playlist = new Playlist(response_object['playlistID'], response_object['playlistName'], songs_in_playlist);
+        app.mediaPlayer.setPlaylist(playlist);
+      });
+}
+
+// TODO: load playlists for a given user
 function loadUserPlaylists()
 {
   // Post a user ID and retrieve a json obj with playlist names
@@ -43,22 +76,10 @@ function loadUserPlaylists()
         });
 }
 
-function createPlaylistRow(order,playlistName, numOfSongs)
-{
-  // Create a row of the list of playlists
-  var li = document.createElement("li");
-  li.id = order;
-  li.textContent = playlistName + "/ " + numOfSongs + " songs";
-  li.onclick = function()
-  {
-    loadSongInfoForPlaylist(default_username, order);
-  };
-
-  return li;
-}
-
+// TODO: add new playlist for certain user
 function addUserPlaylist(userID, playlistObj){}
 
+// TODO: load songs for the playlist the user chose
 function loadSongInfoForPlaylist(userID, playlistID)
 {
   var request_object =
@@ -91,50 +112,8 @@ function loadSongInfoForPlaylist(userID, playlistID)
       });
 }
 
-function loadAllSongInfo()
-{
-  var request_object =
-  {
-      'action': 'getAllSongs'
-  };
 
-  var request_param_string = $.param( request_object );
-
-  $.post( serverPath, request_param_string )
-      .then(
-      function( response_string_json_format )
-      {
-        var response_object = $.parseJSON( response_string_json_format );
-
-        var songs_in_playlist = [];
-        for(var i = 0; i < response_object.length; i++)
-        {
-            var songInfo = response_object[i];
-            if(songInfo)
-            {
-              var song = new Song(songInfo['id'],songInfo['title'], songInfo['artist'], songInfo['path'], songInfo['cover']);
-              songs_in_playlist[i] = song;
-            }
-        }
-        View.showSongList(songs_in_playlist);
-        var playlist = new Playlist(response_object['playlistID'], response_object['playlistName'], songs_in_playlist);
-        app.mediaPlayer.setPlaylist(playlist);
-      });
-}
-
-/*
-function test()
-{
-  $.post( "cover.php" )
-      .then(
-      function( response_string_json_format )
-      {
-        log(response_string_json_format);
-        //var response_object = $.parseJSON( response_string_json_format );
-        //log(response_object);
-      });
-}*/
-
+// Uploads a song to server and appends it to the playlist
 function uploadSong()
 {
   var _submit   = document.getElementById('_submit');

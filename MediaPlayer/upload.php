@@ -1,5 +1,8 @@
 <?php
 
+/* Upload snippet from
+http://codular.com/javascript-ajax-file-upload-with-progress */
+
 include 'cover.php';
 $path = "media/";
 

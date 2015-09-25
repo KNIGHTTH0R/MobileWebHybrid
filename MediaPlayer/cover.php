@@ -1,4 +1,7 @@
 <?php
+
+/*ZEND DOCS https://code.google.com/p/php-reader/wiki/ID3v2 */
+
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 require_once 'Zend/Media/Id3/Exception.php';
 
