@@ -361,6 +361,11 @@ input[type=range]:focus {
   color:#09AE9E;
 }
 
+#media-player-controls li:focus, #media-player-controls li:active:focus
+{
+  outline: none;
+}
+
 
 /*
 * BOTTOM SECTION

@@ -43,7 +43,8 @@ var MediaPlayer = (function ()
 
     function togglePlay()
     {
-      songToPlay.togglePlay();
+      if(songToPlay != null)
+        songToPlay.togglePlay();
     }
 
     function stop()
