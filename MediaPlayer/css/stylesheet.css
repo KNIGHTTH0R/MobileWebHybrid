@@ -476,7 +476,9 @@ input[type=range]:focus {
   #media-player-song-title, #media-player-song-artist
   {
     width: 50%;
-    padding: 0 1em 0 1em;
+    padding: 0 0.2em 0 0.2em;
+    white-space: nowrap;
+    overflow:hidden;
   }
 
   #media-player-song-slash
