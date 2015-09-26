@@ -30,18 +30,15 @@
 
          <div class="file-upload">
            <form >
-            <div id ="file-choose-button" onclick="$('#file').click();">UPLOAD FILE</div>
+            <div id ="file-choose-button">UPLOAD FILE</div>
             <input id="file" type="file" name="file">
             <!--<input id="file-title" class ="custom-input" type="text" name="file-title" placeholder="Song Title">
             <label>Name: </label>
             <label>Artist: </label><input id="file-artist" type="text" name="file-artist">-->
-            <div id="submit" onclick="uploadSong();"><i class="material-icons">&#xE2C6;</i></div>
+            <div id="submit"><i class="material-icons">&#xE2C6;</i></div>
           </form>
          </div>
        </nav>
-
-
-
 
        <div id="container-top" class="container">
 
@@ -64,12 +61,12 @@
                <div id="media-player">
                  <ul id="media-player-controls">
                   <!-- Material design icons -->
-                   <li id="previous" onclick="app.mediaPlayer.previous();"><i class="material-icons">&#xE045;</i></li>
-                   <li id="rewind" onclick="app.mediaPlayer.backward();"><i class="material-icons">&#xE020;</i></li>
-                   <li id="play" onclick="app.mediaPlayer.togglePlay();"><i class="material-icons">&#xE037;</i></li>
+                   <li id="previous"><i class="material-icons">&#xE045;</i></li>
+                   <li id="rewind"><i class="material-icons">&#xE020;</i></li>
+                   <li id="play"><i class="material-icons">&#xE037;</i></li>
                    <!-- TODO: pause &#xE034; when music is playing-->
-                   <li id="forward" onclick="app.mediaPlayer.forward();"><i class="material-icons">&#xE01F;</i></li>
-                   <li id="next" onclick="app.mediaPlayer.next();"><i class="material-icons">&#xE044;</i></li>
+                   <li id="forward"><i class="material-icons">&#xE01F;</i></li>
+                   <li id="next"><i class="material-icons">&#xE044;</i></li>
                  </ul>
                  <div id="media-player-bar">
                   <!--<div id="media-player-bar-line"></div>-->
@@ -166,6 +163,27 @@
            </div>
          </div>
        </div>
+<!---
+       <div id="pop-up">
+         <div id="pop-up-title">
+           <h4>TITLE</h4>
+         </div>
+         <div id="pop-up-desc">
+           <p>Description</p>
+         </div>
+       </div>-->
+
+       <div id="popup" class="overlay hide">
+      	<div class="popup">
+      		<h4>File Upload</h4>
+      		<div class="close"><i class="material-icons">&#xE5CD;</i></div>
+      		<div class="pop-content">
+      			Description
+      		</div>
+      	</div>
+      </div>
+
      </div>
+
     </body>
 </html>

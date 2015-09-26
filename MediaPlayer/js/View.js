@@ -1,3 +1,6 @@
+
+// Handles most of the DOM
+// Creates html elements, assings click events...
 var View = (function()
 {
 		var coversPath =  "media/covers/";
@@ -9,17 +12,27 @@ var View = (function()
 		}
 		function init()
 		{
-				log("view init");
+				//TODO: implement splash screen?
+				assignClickFunctions();
 		}
-    function showUserPlaylists()
+
+		function assignClickFunctions()
 		{
+			// UPLOAD
+			$('#file-choose-button').click(function(){$('#file').click();});
+			$('#submit').click(function(){uploadSong();});
 
-  	}
-
-  	function showPlaylist()
-		{
-
-  	}
+			// MEDIA PLAYER
+			$('#previous').click(function(){app.mediaPlayer.previous();});
+			$('#rewind').click(function(){app.mediaPlayer.backward();});
+			$('#play').click(function(){app.mediaPlayer.togglePlay();});
+			$('#forward').click(function(){app.mediaPlayer.forward();});
+			$('#next').click(function(){app.mediaPlayer.next();});
+			$('.close').click(function()
+			{
+				$('#popup').addClass('hide');
+			});
+		}
 
     function changeSongInfo(song)
     {
@@ -27,6 +40,8 @@ var View = (function()
 			$('#'+song.id).addClass("current-song");
 			$('#media-player-song-title').html(song.title);
 			$('#media-player-song-artist').html(song.author);
+
+			// if there is no cover image use default
 			if(imageExists(coversPath + song.cover + ".jpeg"))
 				$('#media-player-album-cover-img').attr("src", coversPath + song.cover + ".jpeg");
 			else
@@ -48,20 +63,6 @@ var View = (function()
 					documentFragment.appendChild(createRowForSong(i, listOfSongs[i]));
 			}
 			$('#song-list').html(documentFragment);
-		}
-
-		function createSongRow(index, song)
-		{
-			// Create a row for song
-			var li = document.createElement("li");
-			li.id = song.id;
-			li.songID = song.id;
-			li.textContent = song.title + "/ " + song.author;
-			li.onclick = function()
-			{
-				app.mediaPlayer.playClickedSong(song.id);
-			};
-			return li;
 		}
 
 		function appendRow(song)
@@ -107,11 +108,19 @@ var View = (function()
 			return li;
 		}
 
+		function showPopup(title, description)
+		{
+			$('.popup h4').html(title);
+			$('.pop-content').html(description);
+			$('#popup').removeClass('hide');
+		}
+
 		return {
 			init: init,
 			showSongList: createSongList,
 			changeSongInfo: changeSongInfo,
-			appendRow: appendRow
+			appendRow: appendRow,
+			showPopup: showPopup
 		}
 
-		}()); // Run the unnamed function and assign the results to app for use.
+		}());

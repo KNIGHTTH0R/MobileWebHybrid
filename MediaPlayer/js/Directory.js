@@ -143,12 +143,20 @@ function uploadSong()
             if(request.responseText != null)
             {
               var response_object = $.parseJSON( request.responseText );
-              var song = new Song(response_object['id'],response_object['title'], response_object['artist'], response_object['path'], response_object['cover']);
 
-              log(song);
+              if(response_object['status'] != "error")
+              {
+                var song = new Song(response_object['id'],response_object['title'], response_object['artist'], response_object['path'], response_object['cover']);
 
-              View.appendRow(song);
-              app.mediaPlayer.getPlaylist().addSong(song);
+                View.showPopup("File Upload", song.title + " uploaded successfully");
+
+                View.appendRow(song);
+                app.mediaPlayer.getPlaylist().addSong(song);
+              }
+              else
+              {
+                View.showPopup("File Upload Error", response_object['data']);
+              }
             }
         }
     };

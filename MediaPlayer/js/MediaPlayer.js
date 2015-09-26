@@ -8,7 +8,7 @@ var MediaPlayer = (function ()
     var currentPlaylist;
     var isPlaying = false;
     var autoPlay = false; // TODO: set true to autoplay on load
-    var songStep = 10;
+    var songStep = 2;
 
     var _public =
     {

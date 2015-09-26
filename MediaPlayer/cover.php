@@ -1,53 +1,8 @@
 <?php
 
 /*ZEND DOCS https://code.google.com/p/php-reader/wiki/ID3v2 */
-
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 require_once 'Zend/Media/Id3/Exception.php';
-
-function createImagesForAllFiles($directory)
-{/*
-  // Retrieve all files in the directory
-  foreach (glob($directory . "/*.mp3") as $file)
-  {
-    echo "Reading " . $file . "\n";
-
-    //Attempt to parse the file, catching any exceptions
-    try {
-      $id3 = new Zend_Media_Id3v2($file);
-    }
-    catch (Zend_Media_Id3_Exception $e) {
-      echo "  " . $e->getMessage() . "\n";
-      continue;
-    }
-
-    if(isset($id3->talb))
-    {
-      //$title = $id3->tit2->text;
-      $album = $id3->talb->text;
-      $path = "media/covers/" . $album;
-      echo $path;
-    }
-
-    if (isset($id3->apic))
-    {
-      echo "  Found a cover image, writing image data to a separate file..\n";
-      //Write the image
-      $type = explode("/", $id3->apic->mimeType, 2);
-      if (($handle = fopen($image = $path . "." . $type[1], "wb")) !== false)
-      {
-        if (fwrite($handle, $id3->apic->imageData, $id3->apic->imageSize) != $id3->apic->imageSize)
-          echo "  Found a cover image, but unable to write image file: " .
-            $image . "\n";
-        fclose($handle);
-      }
-      else echo "  Found a cover image, but unable to open image file " .
-        "for writing: " . $image . "\n";
-    }
-    else
-      echo "  No cover image found!\n";
-  }*/
-}
 
 function createAndGetImageFromFile($songPath)
 {
@@ -81,7 +36,8 @@ function createAndGetImageFromFile($songPath)
 
   if(isset ($id3->tlen))
   {
-    echo $id3->tlen->text;
+    /* TODO: find out why tlen isnt working in library */
+    __debugEcho($id3->tlen->text);
   }
 
   if (isset($id3->apic))
@@ -162,6 +118,50 @@ function getAuthor($songPath)
     }
 
     return $author;
+}
+
+function createImagesForAllFiles($directory)
+{/*
+  // Retrieve all files in the directory
+  foreach (glob($directory . "/*.mp3") as $file)
+  {
+    echo "Reading " . $file . "\n";
+
+    //Attempt to parse the file, catching any exceptions
+    try {
+      $id3 = new Zend_Media_Id3v2($file);
+    }
+    catch (Zend_Media_Id3_Exception $e) {
+      echo "  " . $e->getMessage() . "\n";
+      continue;
+    }
+
+    if(isset($id3->talb))
+    {
+      //$title = $id3->tit2->text;
+      $album = $id3->talb->text;
+      $path = "media/covers/" . $album;
+      echo $path;
+    }
+
+    if (isset($id3->apic))
+    {
+      echo "  Found a cover image, writing image data to a separate file..\n";
+      //Write the image
+      $type = explode("/", $id3->apic->mimeType, 2);
+      if (($handle = fopen($image = $path . "." . $type[1], "wb")) !== false)
+      {
+        if (fwrite($handle, $id3->apic->imageData, $id3->apic->imageSize) != $id3->apic->imageSize)
+          echo "  Found a cover image, but unable to write image file: " .
+            $image . "\n";
+        fclose($handle);
+      }
+      else echo "  Found a cover image, but unable to open image file " .
+        "for writing: " . $image . "\n";
+    }
+    else
+      echo "  No cover image found!\n";
+  }*/
 }
 
 

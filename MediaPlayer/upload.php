@@ -9,11 +9,11 @@ $path = "media/";
 // Output JSON
 function outputJSON($msg, $status = 'error')
 {
-    /*header('Content-Type: application/json');
-    /*echo(json_encode(array(
+    header('Content-Type: application/json');
+    die(json_encode(array(
         'data' => $msg,
         'status' => $status
-    )));*/
+    )));
 }
 
   // Check for errors
