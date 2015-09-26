@@ -1,6 +1,10 @@
 <?php
 
-/* Upload snippet from
+/*
+This script uploads audio files to the directory,
+saves the info to music_dir and sends back to client the info for display
+
+Code snippet based on
 http://codular.com/javascript-ajax-file-upload-with-progress */
 
 include 'cover.php';

@@ -1,14 +1,15 @@
-var directory_log_enabled = true;
+/* This file includes helper functions for the AJAX communication */
+
+var directory_log_enabled = false;
 var default_username = "username";
 var serverPath = "server.php";
 
-function log(data)
+function log(data) // used to disable all logs at once
 {
   if(directory_log_enabled)
     console.log(data);
 }
 
-/* This file includes helper functions for the AJAX communication */
 // Loads info for all songs in directory
 function loadAllSongInfo()
 {

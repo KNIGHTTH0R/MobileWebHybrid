@@ -1,0 +1,29 @@
+REPOSITORY
+
+  https://github.com/andreiamfg/MobileWebHybrid
+
+HOW TO TEST
+
+  Download from repo and copy "MediaPlayer" folder to server root.
+  Access it by "your.ip.adress/MediaPlayer"
+
+FEATURES
+
+  - User can choose a song to play
+  - User can play, pause, forward, rewind, skip to next and previous song
+  - User can upload songs to server
+
+  - Server fetches song name, author and cover using id3 tags through Zend library
+  - Server stores song data in a json directory file
+  - Server stores files
+
+  - JS fetches media info from server and creates Song objects
+  - JS populates list with song objects
+  - Buzz uses the song obj path to load and play songs
+
+  - CSS is responsive and tailored for mobile, tablet and desktop
+  - App works on desktop and mobile browsers (optimized for chrome)
+
+NOTES 
+  - Scripts are still "under construction" so there's a lot of
+  commented code for reference or future use

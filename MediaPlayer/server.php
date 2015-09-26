@@ -1,5 +1,9 @@
 <?php
 
+/*
+This script gets data from directory json files,
+processes, organizes and sends the requested data back to the client
+*/
 class Server
 {
 	private $debug = TRUE;

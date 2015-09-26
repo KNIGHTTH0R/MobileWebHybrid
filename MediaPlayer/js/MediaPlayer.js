@@ -1,3 +1,8 @@
+/*
+This class plays songs contained in a playlist using buzz.js
+and enables control over it, like pause/play, skip...
+*/
+
 var MediaPlayer = (function ()
 {
   function Class()
@@ -66,7 +71,7 @@ var MediaPlayer = (function ()
 
       songToPlay = new buzz.sound ( "media/" + song.path,
       {
-        formats: ["mp3"],
+        formats: ["mp3", "ogg"],
         preload:true,
         autoplay:true,
         loop:false,

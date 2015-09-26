@@ -1,6 +1,13 @@
 <?php
 
-/*ZEND DOCS https://code.google.com/p/php-reader/wiki/ID3v2 */
+/*
+
+This script uses the ZEND library to access mp3 tags
+to fetch info like song title and album cover image
+
+ZEND DOCS https://code.google.com/p/php-reader/wiki/ID3v2 */
+
+
 require_once 'Zend/Media/Id3v2.php'; // or using autoload
 require_once 'Zend/Media/Id3/Exception.php';
 

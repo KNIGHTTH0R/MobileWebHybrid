@@ -1,6 +1,7 @@
 
-// Handles most of the DOM
-// Creates html elements, assings click events...
+/* Handles most of the DOM
+Creates html elements, assigns click events...*/
+
 var View = (function()
 {
 		var coversPath =  "media/covers/";

@@ -1,3 +1,5 @@
+/* Model classes to store information back from server */
+
 function User(username, playlists)
 {
     this.username   = username;
