@@ -144,7 +144,7 @@ function uploadSong()
             {
               var response_object = $.parseJSON( request.responseText );
 
-              if(response_object['status'] != "error")
+              if(response_object['status'] === "success")
               {
                 var song = new Song(response_object['id'],response_object['title'], response_object['artist'], response_object['path'], response_object['cover']);
 
@@ -153,7 +153,7 @@ function uploadSong()
                 View.appendRow(song);
                 app.mediaPlayer.getPlaylist().addSong(song);
               }
-              else
+              else if (response_object['status'] === "error")
               {
                 View.showPopup("File Upload Error", response_object['data']);
               }

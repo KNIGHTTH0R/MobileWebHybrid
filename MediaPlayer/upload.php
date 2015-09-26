@@ -24,7 +24,7 @@ function outputJSON($msg, $status = 'error')
 
   // Check filetype
   if($_FILES['SelectedFile']['type'] != 'audio/mp3'){
-      outputJSON('Unsupported filetype uploaded.');
+      outputJSON('Unsupported filetype.');
   }
 
   // Check filesize
@@ -41,6 +41,9 @@ function outputJSON($msg, $status = 'error')
   if(!move_uploaded_file($_FILES['SelectedFile']['tmp_name'], $path . $_FILES['SelectedFile']['name'])){
       outputJSON('Error uploading file - check destination is writeable.');
   }
+
+  // Success!
+  //outputJSON('File uploaded successfully', 'success');
 
   $file = "directory/music_dir.json";
   $json_dir = json_decode(file_get_contents($file), true);
@@ -65,9 +68,7 @@ function outputJSON($msg, $status = 'error')
   $newFile = file_put_contents($file, json_encode($newJson,TRUE));
 
   $dirArray[$count]['id'] = $count;
+  $dirArray[$count]['status'] = "success";
   echo json_encode($dirArray[$count],TRUE);
-
-  // Success!
-  outputJSON('File uploaded successfully to "' . $path . $_FILES['SelectedFile']['name'] . '".', 'success');
 
 ?>
