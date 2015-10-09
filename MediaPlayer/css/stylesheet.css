@@ -592,6 +592,83 @@ input[type=range]:focus {
 
 }
 
+
+/* smaller devices fix */
+@media only screen and (max-width: 400px)
+{
+    body
+    {
+        /*font-size: 12px;*/
+    }
+
+    #containter-bot-content, #song-list li
+    {
+        width: 100vw;
+        padding: 0px;
+    }
+
+    #song-list li div
+    {
+        padding-left: 1.5em;
+    }
+
+    .song-row-title
+    {
+        width: 50%;
+    }
+
+    #media-player-song-title, #media-player-song-artist
+    {
+        font-size: 8px;
+        width: 30%;
+        padding: 0 0.2em 0 0.2em;
+        white-space: nowrap;
+        overflow:hidden;
+    }
+
+    #media-player
+    {
+        margin: 0;
+        padding:0;
+    }
+
+    #media-player-bar, #media-player-time
+    {
+        padding:0;
+        margin:0;
+        height: 5vh;
+    }
+
+    .content-top
+    {
+        padding-top:0;
+    }
+
+    #media-player-info
+    {
+        padding-top: 1.5em;
+    }
+
+    #media-player-info div
+    {
+        padding-bottom:0.6em;
+    }
+
+
+    #media-player-time p
+    {
+        font-size: 0.8em;
+        margin-left: 0.2em;
+        padding-right: 0.2em;
+        /* AMAZING CODE TO CENTER VERTICAL*/
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+}
+
+
 @media only screen and (min-width:700px) and (max-width: 1300px)
 {
 
