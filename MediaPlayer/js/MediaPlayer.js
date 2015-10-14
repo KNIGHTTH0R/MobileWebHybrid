@@ -100,7 +100,7 @@ var MediaPlayer = (function ()
 
     function bindSoundToTimeBar()
     {
-      $("#media-player-time-total").html("/"+buzz.toTimer(this.getDuration()));
+      $("#media-player-time-total").html(buzz.toTimer(this.getDuration()));
       $("#media-player-time-elapsed").html(buzz.toTimer(this.getTime()));
       $("#time-bar").attr({ max: this.getDuration() });
       $("#time-bar").val(this.getTime());
