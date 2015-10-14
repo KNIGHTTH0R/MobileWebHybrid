@@ -35,18 +35,7 @@ if (this.navigationHandler==null)
 					{
 						console.log("show file upload");
 						$('#file-upload-form').removeClass('hide');
-					},
-					something: function()
-					{
-						returnSomething("WOHOO");
-					},
-					returnSomething: function(aString)
-					{
-
-					},
-					clicked: function() {
-                    $('#navDiv').html(new Date());
-                }
+					}
 			};
 }
 
@@ -62,5 +51,4 @@ $(document).ready( function()
 		// This function call will be overriden on mobile native apps
 		// in order to keep file upload hidden, since it's not supported
 		navigationHandler.whenDocumentReady();
-		$('.logo').click( function() { navigationHandler.clicked(); } );
 });
