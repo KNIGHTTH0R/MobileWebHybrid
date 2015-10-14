@@ -320,7 +320,7 @@ input[type=file]
   width: 50%;
   margin-left: 1em;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /**/
   display: flex;
   vertical-align: middle;
   line-height: 3.2em;
