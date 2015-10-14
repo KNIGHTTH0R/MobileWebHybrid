@@ -322,6 +322,8 @@ input[type=file]
   align-items: center;
   justify-content: center;
   display: flex;
+  vertical-align: middle;
+  line-height: 3.2em;
 }
 
 input[type='range']
@@ -373,6 +375,8 @@ input[type=range]:focus {
   align-items: center;
   justify-content: center;
   display: flex;
+  vertical-align: middle;
+  line-height: 5em;
 }
 
 #media-player-controls
@@ -384,6 +388,7 @@ input[type=range]:focus {
   align-items: center;
   justify-content: center;
   display: flex;
+
 }
 
 #media-player-controls li
@@ -391,9 +396,8 @@ input[type=range]:focus {
   height: 100%;
   display: inline-block;
   width: 17%;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+  vertical-align: middle;
+  line-height: 5em;
 }
 
 #media-player-controls i
