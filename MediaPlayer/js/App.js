@@ -35,6 +35,14 @@ if (this.navigationHandler==null)
 					{
 						console.log("show file upload");
 						$('#file-upload-form').removeClass('hide');
+					},
+					something: function()
+					{
+						returnSomething("WOHOO");
+					},
+					returnSomething: function(aString)
+					{
+
 					}
 			};
 }
