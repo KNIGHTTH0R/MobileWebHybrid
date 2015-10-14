@@ -12,7 +12,7 @@ var MediaPlayer = (function ()
     var songToPlay;
     var currentPlaylist;
     var isPlaying = false;
-    var autoPlay = false; // TODO: set true to autoplay on load
+    var autoPlay = true; // TODO: set true/false to autoplay on load
     var songStep = 2;
 
     var _public =

@@ -27,6 +27,18 @@ var App = (function() {
 
 })();
 
+if (this.navigationHandler==null)
+{
+			this.navigationHandler =
+			{
+					whenDocumentReady: function()
+					{
+						console.log("show file upload");
+						$('#file-upload-form').removeClass('hide');
+					}
+			};
+}
+
 var app;
 $(document).ready( function()
 {
@@ -35,4 +47,8 @@ $(document).ready( function()
 		//loadUserPlaylists();
 		//loadSongInfoForPlaylist(default_username, 0);
 		loadAllSongInfo();
+
+		// This function call will be overriden on mobile native apps
+		// in order to keep file upload hidden, since it's not supported
+		navigationHandler.whenDocumentReady();
 });

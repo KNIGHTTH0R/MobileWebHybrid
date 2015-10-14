@@ -2,8 +2,9 @@
 <html>
     <head>
         <title>MediaPlayer</title>
-        <meta name="viewport" content="width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">
+        <!--<meta name="viewport" content="width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">-->
         <!--<meta name = "viewport" content="width=device-width, height=device-height, user-scalable=NO">-->
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1 user-scalable=no">
         <link rel='stylesheet' href='css/reset.css'>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel='stylesheet' href='css/stylesheet.css'>
@@ -25,11 +26,10 @@
      <div id="app-frame">
        <nav>
          <div class="logo">
-           <h2 onclick="test();"> // MEDIA PLAYER </h2>
-           <!-- dropdown of playlists? -->
+           <h2 > // MEDIA PLAYER </h2>
          </div>
 
-         <div class="file-upload">
+         <div id="file-upload-form" class="file-upload hide">
            <form >
             <div id ="file-choose-button">UPLOAD FILE</div>
             <input id="file" type="file" name="file">
