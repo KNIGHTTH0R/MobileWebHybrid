@@ -559,7 +559,8 @@ input[type=range]:focus {
   {
       width: 75%;
       background-color: inherit;
-      line-height: 2em;
+      margin-top: 2vh;
+
   }
   #media-player-time
   {
@@ -628,6 +629,7 @@ input[type=range]:focus {
         padding:0;
         margin:0;
         height: 5vh;
+        margin-top: 2vh;
     }
 
     .content-top
@@ -651,13 +653,14 @@ input[type=range]:focus {
         font-size: 0.8em;
         margin-left: 0.2em;
         padding-right: 0.2em;
-        /* AMAZING CODE TO CENTER VERTICAL*/
+        /* AMAZING CODE TO CENTER HORI*/
         display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
         display: -ms-flexbox;  /* TWEENER - IE 10 */
         display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
         display: flex;
         align-items: center;
         justify-content: center;
+        line-height: 2em;
     }
 
 
