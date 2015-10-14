@@ -571,7 +571,8 @@ input[type=range]:focus {
   #container-bot-content
   {
     padding-top: 0px;
-    padding-bottom: 1em;
+    height: 90%;
+    padding-bottom: 1.5em;
   }
 
   #song-list li
